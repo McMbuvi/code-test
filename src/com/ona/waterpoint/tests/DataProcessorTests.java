@@ -1,14 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ona.waterpoint.tests;
 
 import com.ona.waterpoint.DataProcessor;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 /**
@@ -16,6 +10,17 @@ import org.junit.Test;
  * @author Isaac Mwongela(mwongelaima@gmail.com)
  */
 public class DataProcessorTests {
+    public static final String BECHINSA = "Bechinsa";
+    public static final String CHANPOLINSA = "Chanpolinsa";
+    public static final String DORINSA = "Dorinsa";
+    public static final String JAGANATH = "Jaganath";
+    public static final String JINIENSA = "Jiniensa";
+    public static final String NABULUGU = "Nabulugu";
+    public static final String PRADESH = "Pradesh";
+    public static final String SELINVOYA = "Selinvoya";   
+    public static final String ZANGU_VUGA = "Zangu-Vuga";
+    public static final String ZUA = "Zua";
+    public static final String ZUEDEMA = "Zuedema";  
 
     /**
      * Test a dataset with no water points.
@@ -42,9 +47,9 @@ public class DataProcessorTests {
         JSONObject result = processor.createReport();
         assertEquals(result.get(DataProcessor.NUMBER_FUNCTIONAL), 2);
         JSONObject numWaterPoints = (JSONObject) result.get(DataProcessor.NUMBER_WATER_POINTS);
-        assertEquals(numWaterPoints.get("Nabulugu"), 2);
+        assertEquals(numWaterPoints.get(NABULUGU), 2);
         JSONObject communityRanking = (JSONObject) result.get(DataProcessor.COMMUNITY_RANKING);
-        assertEquals(communityRanking.get("Nabulugu"), 1);
+        assertEquals(communityRanking.get(NABULUGU), 1);
     }
 
     /**
@@ -64,19 +69,35 @@ public class DataProcessorTests {
         JSONObject result = processor.createReport();
         assertEquals(result.get(DataProcessor.NUMBER_FUNCTIONAL), 4);
         JSONObject numWaterPoints = (JSONObject) result.get(DataProcessor.NUMBER_WATER_POINTS);
-        assertEquals(numWaterPoints.get("Nabulugu"), 3);
-        assertEquals(numWaterPoints.get("Pradesh"), 2);
-        assertEquals(numWaterPoints.get("Jaganath"), 2);
+        assertEquals(numWaterPoints.get(NABULUGU), 3);
+        assertEquals(numWaterPoints.get(PRADESH), 2);
+        assertEquals(numWaterPoints.get(JAGANATH), 2);
         JSONObject communityRanking = (JSONObject) result.get(DataProcessor.COMMUNITY_RANKING);
-        assertEquals(communityRanking.get("Pradesh"), 1);
-        assertEquals(communityRanking.get("Jaganath"), 2);
-        assertEquals(communityRanking.get("Nabulugu"), 3);
+        assertEquals(communityRanking.get(JAGANATH), 1);
+        assertEquals(communityRanking.get(PRADESH), 2);
+        assertEquals(communityRanking.get(NABULUGU), 3);
     }
     
+    /**
+     * Test with the provided json dataset url.
+     * 
+     * @throws Exception if there network error reading from url.
+     */
     @Test
     public void testUrlDataSetJson() throws Exception {
         DataProcessor processor = new DataProcessor();
         processor.calculate("https://raw.githubusercontent.com/onaio/ona-tech/master/data/water_points.json");
-        System.out.println(processor.createReport().toString());
+        JSONObject result = processor.createReport();
+        assertEquals(result.get(DataProcessor.NUMBER_FUNCTIONAL), 623);
+        JSONObject numWaterPoints = (JSONObject) result.get(DataProcessor.NUMBER_WATER_POINTS);
+        assertEquals(numWaterPoints.get(BECHINSA), 26);
+        assertEquals(numWaterPoints.get(JINIENSA), 1);
+        assertEquals(numWaterPoints.get(ZUEDEMA), 18);
+        JSONObject communityRanking = (JSONObject) result.get(DataProcessor.COMMUNITY_RANKING);
+        assertEquals(communityRanking.get(CHANPOLINSA), 14);
+        assertEquals(communityRanking.get(DORINSA), 29);
+        assertEquals(communityRanking.get(SELINVOYA), 27);
+        assertEquals(communityRanking.get(ZANGU_VUGA), 21);
+        assertEquals(communityRanking.get(ZUA), 22);
     }
 }

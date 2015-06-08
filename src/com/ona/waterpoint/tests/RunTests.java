@@ -16,25 +16,31 @@ public class RunTests {
 
     public static void main(String[] args) {
         Result result;
-        //Test DataProcessor
-        result = JUnitCore.runClasses(DataProcessorTests.class);
-        for (Failure failure : result.getFailures()) {
-            System.out.println(failure.toString());
-        }
-        System.out.println(result.wasSuccessful());
-
         //Test WaterPoint
         result = JUnitCore.runClasses(WaterPointTests.class);
         for (Failure failure : result.getFailures()) {
             System.out.println(failure.toString());
         }
-        System.out.println(result.wasSuccessful());
+        if (result.wasSuccessful()) {
+            System.out.println("WaterPointTests PASSED");
+        }
 
         //Test Community
         result = JUnitCore.runClasses(CommunityTests.class);
         for (Failure failure : result.getFailures()) {
             System.out.println(failure.toString());
         }
-        System.out.println(result.wasSuccessful());
+        if (result.wasSuccessful()) {
+            System.out.println("CommunityTests PASSED");
+        }
+        
+        //Test DataProcessor
+        result = JUnitCore.runClasses(DataProcessorTests.class);
+        for (Failure failure : result.getFailures()) {
+            System.out.println(failure.toString());
+        }
+        if (result.wasSuccessful()) {
+            System.out.println("DataProcessorTests PASSED");
+        }
     }
 }
