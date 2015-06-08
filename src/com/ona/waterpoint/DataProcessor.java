@@ -13,7 +13,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- *
+ * The DataProcessor contains functions for retrieving, calculating and
+ * generating results for water points data set given the url of the json file
+ * containing the data set.
+ * 
  * @author Isaac Mwongela(mwongelaima@gmail.com)
  */
 public class DataProcessor {
@@ -175,7 +178,7 @@ public class DataProcessor {
         List<Community> cwps = new ArrayList<Community>(communitiesWaterPoints.values());
         JSONObject cps = new JSONObject();
         for (Community cwp : cwps) {
-            cps.append(cwp.getCommunityName(), cwp.getTotalWaterPoints());
+            cps.put(cwp.getCommunityName(), cwp.getTotalWaterPoints());
         }
         result.put(NUMBER_WATER_POINTS, cps);
 
@@ -185,7 +188,7 @@ public class DataProcessor {
         JSONObject cpsRank = new JSONObject();
         int rank = 1;
         for (Community cwp : cwps) {
-            cpsRank.append(cwp.getCommunityName(), rank);
+            cpsRank.put(cwp.getCommunityName(), rank);
             rank++;
         }
         result.put(COMMUNITY_RANKING, cpsRank);

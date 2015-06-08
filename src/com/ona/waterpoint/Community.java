@@ -1,11 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ona.waterpoint;
 
 /**
- *
+ * Class Community maintains an inventory to the number of resources i.e the
+ * total number of water points and the broken ones. It also implements the 
+ * Comparable interface for sorting based on percentage of broken water points. 
+ * 
  * @author Isaac Mwongela(mwongelaima@gmail.com)
  */
 public class Community implements Comparable<Community> {
@@ -15,10 +14,9 @@ public class Community implements Comparable<Community> {
     private String communityName;
 
     /**
-     * 
-     * @param name
-     * @param totalWaterPoints
-     * @param brokenWaterPoints 
+     * @param name the name of the community.
+     * @param totalWaterPoints the total number of water points in the community.
+     * @param brokenWaterPoints the number of broken water points in community.
      */
     public Community(String name, int totalWaterPoints, int brokenWaterPoints) {
         this.communityName = name;

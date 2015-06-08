@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ona.waterpoint;
 
 /**
@@ -13,7 +9,8 @@ public class WaterPoint {
     private String community;
 
     /**
-     * Constructor
+     * Constructor - Initializes the class variables.
+     * 
      * @param functional sets the state of the tap whether functional or not.
      * @param community sets the name of the community.
      */
@@ -45,7 +42,7 @@ public class WaterPoint {
     }
 
     /**
-     * Set the name of the community provided by @param community.
+     * @param community the new community name to set.
      */
     public void setCommunity(String community) {
         this.community = community;
